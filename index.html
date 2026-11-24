@@ -21,20 +21,20 @@
   :root:not([data-theme="light"]){
     --bg:#15191B; --panel:#1E2427; --ink:#ECEFED; --muted:#A7B0B4; --line:#343C40;
     --asphalt:#C9CFD2; --asphalt-soft:#5B656A; --land:#1B2023; --water:#22394A;
-    --sign:#2D69B0; --good:#4FB073; --wear:#E0A73A; --fail:#F0685C; --focus:#8DB9F0;
+    --sign:#2D69B0; --sign-text:#8DB9F0; --good:#4FB073; --wear:#E0A73A; --fail:#F0685C; --focus:#8DB9F0;
   }
 }
 :root[data-theme="dark"]{
   --bg:#15191B; --panel:#1E2427; --ink:#ECEFED; --muted:#A7B0B4; --line:#343C40;
   --asphalt:#C9CFD2; --asphalt-soft:#5B656A; --land:#1B2023; --water:#22394A;
-  --sign:#2D69B0; --good:#4FB073; --wear:#E0A73A; --fail:#F0685C; --focus:#8DB9F0;
+  --sign:#2D69B0; --sign-text:#8DB9F0; --good:#4FB073; --wear:#E0A73A; --fail:#F0685C; --focus:#8DB9F0;
 }
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 72px);scroll-behavior:smooth}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:Barlow,"Segoe UI",system-ui,sans-serif;font-size:17px;line-height:1.55}
 h1,h2,h3{font-family:"Big Shoulders Display","Arial Narrow",sans-serif;line-height:1.02;margin:0;letter-spacing:.2px}
-a{color:var(--sign)}
+a{color:var(--sign-text,var(--sign))}
 :focus-visible{outline:3px solid var(--focus);outline-offset:2px}
 button,input,select,textarea{font:inherit;color:inherit}
 .wrap{max-width:1240px;margin:0 auto;padding:0 24px}
@@ -138,7 +138,7 @@ fieldset{border:0;padding:0;margin:0}
 /* how */
 .steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:3px solid var(--asphalt)}
 .steps li{padding:22px 22px 8px 0;display:flex;flex-direction:column;gap:8px;position:relative}
-.steps .n{font-family:"Big Shoulders Display",sans-serif;font-size:44px;font-weight:700;color:var(--sign);line-height:1}
+.steps .n{font-family:"Big Shoulders Display",sans-serif;font-size:44px;font-weight:700;color:var(--sign-text,var(--sign));line-height:1}
 .steps h3{font-size:26px}
 .steps p{margin:0;color:var(--muted);max-width:32ch}
 .rules{margin-top:40px}
@@ -210,7 +210,7 @@ nav.links a[aria-current="page"]{background:var(--ink);color:var(--bg)}
 .tile:hover{border-color:var(--ink)}
 .tile h3{font-size:32px}
 .tile p{margin:0;color:var(--muted)}
-.tile .go{margin-top:auto;font-weight:700;color:var(--sign)}
+.tile .go{margin-top:auto;font-weight:700;color:var(--sign-text,var(--sign))}
 .worst{list-style:none;margin:0;padding:0;border-top:3px solid var(--asphalt)}
 .worst li{border-bottom:1px solid var(--line)}
 .worst button{width:100%;display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:16px;align-items:center;background:none;border:0;padding:14px 0;cursor:pointer;text-align:left;min-height:60px;color:var(--ink)}
@@ -281,12 +281,12 @@ nav.links a[aria-current="page"]{background:var(--ink);color:var(--bg)}
  #printBox pre{white-space:pre-wrap;font:12pt/1.5 Georgia,serif;color:#000}}
 /* ---------- Get it fixed ---------- */
 .fx-intro{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin:8px 0 32px;padding:0;list-style:none;counter-reset:fx}
-.fx-intro li{background:var(--panel);border:1px solid var(--line);border-top:5px solid var(--mark);border-radius:8px;padding:12px 14px;font-size:15px;line-height:1.35;counter-increment:fx}
+.fx-intro li{background:var(--panel);border:2px solid var(--mark);border-radius:8px;padding:12px 14px;font-size:15px;line-height:1.35;counter-increment:fx}
 .fx-intro li::before{content:counter(fx);display:block;font-family:"Big Shoulders Display",sans-serif;font-weight:700;font-size:28px;line-height:1;margin-bottom:4px}
 .fx-intro b{display:block}
 .fx-intro li{display:flex;flex-direction:column}
 .fx-go{display:flex;flex-direction:column;gap:6px;margin-top:10px}
-.fx-go a{display:block;font-weight:700;font-size:14px;color:var(--sign);text-decoration:underline;text-underline-offset:2px;line-height:1.3}
+.fx-go a{display:block;font-weight:700;font-size:14px;color:var(--sign-text,var(--sign));text-decoration:underline;text-underline-offset:2px;line-height:1.3}
 .fx-go a:first-child{background:var(--ink);color:var(--bg);text-decoration:none;border-radius:6px;padding:8px 10px;text-align:center}
 @media (max-width:980px){.fx-intro{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:560px){.fx-intro{grid-template-columns:repeat(2,minmax(0,1fr))}}
@@ -375,7 +375,7 @@ nav.links a[aria-current="page"]{background:var(--ink);color:var(--bg)}
 .fx-board .chips span{font-size:12px;font-weight:700;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:2px 8px}
 .fx-board .btn{min-height:40px;font-size:14px;padding:0 12px}
 .fx-prog{margin:0 0 16px}
-.fx-progtop{background:var(--panel);border:1px solid var(--line);border-top:5px solid var(--mark);border-radius:8px;padding:16px 18px;margin:8px 0 32px}
+.fx-progtop{background:var(--panel);border:2px solid var(--mark);border-radius:8px;padding:16px 18px;margin:8px 0 32px}
 .fx-bar{height:10px;background:var(--line);border-radius:6px;overflow:hidden}
 .fx-bar div{height:100%;background:var(--good);border-radius:6px;transition:width .4s}
 .fx-barl{margin:6px 0 10px;font-weight:700;font-size:15px}
@@ -483,7 +483,7 @@ nav.links a[aria-current="page"]{background:var(--ink);color:var(--bg)}
 .mq-track{display:inline-flex;gap:0;padding:12px 0;font-family:"Big Shoulders Display",sans-serif;font-weight:800;font-size:26px;line-height:1}
 .mq-track span{padding:0 22px;display:inline-flex;align-items:center;gap:22px}
 .mq-track span::after{content:"";width:34px;height:6px;background:#1E2326;border-radius:2px}
-@media (prefers-reduced-motion:no-preference){.mq-track{animation:mq 48s linear infinite}}
+@media (prefers-reduced-motion:no-preference){}
 @keyframes mq{to{transform:translateX(-50%)}}
 .h-sec{font-family:"Big Shoulders Display",sans-serif;font-weight:900;font-size:clamp(48px,7vw,104px);line-height:.9;margin:0 0 18px;letter-spacing:-.005em}
 .h-sub{color:var(--muted);font-size:18px;max-width:60ch;margin:0 0 28px}
@@ -580,7 +580,7 @@ header.top .links a{border-radius:999px;padding-inline:14px}
 .h-end{padding-bottom:140px}
 /* fix page preview panel */
 .fx-pre{background:#1F2427;color:#ECEFED;border-radius:18px;padding:30px 30px 26px;position:sticky;top:96px;overflow:hidden}
-.fx-pre::before{content:"";position:absolute;left:0;top:0;bottom:0;width:8px;background:repeating-linear-gradient(180deg,#F2B705 0 26px,transparent 26px 44px)}
+.fx-pre::before{content:"";position:absolute;left:0;right:0;top:0;height:8px;background:repeating-linear-gradient(90deg,#F2B705 0 26px,transparent 26px 44px)}
 .fx-pre-k{margin:0 0 6px;color:#F2B705;font-weight:600;font-size:15px}
 .fx-pre h3{font-family:"Big Shoulders Display",sans-serif;font-weight:800;font-size:clamp(30px,3vw,42px);line-height:.95;margin:0 0 22px;color:#fff}
 .fx-pre ol{list-style:none;margin:0;padding:0;counter-reset:p;display:grid;gap:4px}
@@ -605,6 +605,38 @@ footer.ft .ft-grid{display:grid;grid-template-columns:minmax(0,1.1fr) auto minma
 .ft-note p{margin:0 0 10px;max-width:56ch}
 @media (max-width:860px){footer.ft .ft-grid{grid-template-columns:minmax(0,1fr);gap:28px}}
 @media (max-width:520px){header.top .links{overflow-x:auto;scrollbar-width:none;max-width:100%}header.top .links a{padding-inline:10px;font-size:14px;white-space:nowrap}}
+
+/* polish pass, Nov 2026 */
+[tabindex="-1"]:focus{outline:none}
+h2.as-h3{font-size:clamp(22px,2vw,26px);margin:0 0 12px}
+::selection{background:#F2B705;color:#1E2326}
+html{scrollbar-color:#8C9398 var(--bg)}
+a{text-underline-offset:.22em;text-decoration-thickness:1.5px}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.plates .ps b,.cmp-card .days,.sn{font-variant-numeric:tabular-nums}
+.sn svg,.dot svg{display:block}
+.fx-pre li:last-child::before{content:"";background:#F2B705 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%231E2326' d='M12 2.8l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 16.8l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z'/%3E%3C/svg%3E") center/15px no-repeat}
+.ds-arrow{display:inline-flex;align-items:center;margin-right:10px;font-size:0}
+.cmp .cmp-knob{box-shadow:0 6px 16px -6px rgba(0,0,0,.55),0 0 0 3px rgba(30,35,38,.35)}
+.h-lede{font-size:clamp(18px,1.5vw,21px);color:#D8DDDF;max-width:44ch;line-height:1.5}
+.h-stop,.h-stop:not(.on):not(.past){opacity:1}
+.h-stop:not(.on):not(.past) .h-day{color:transparent;-webkit-text-stroke:1.5px var(--asphalt-soft)}
+.h-stop:not(.on):not(.past) h3{color:var(--muted)}
+.h-stop .h-day,.h-stop h3{transition:color .45s cubic-bezier(.16,1,.3,1),-webkit-text-stroke-color .45s}
+.h-cmp-nav{display:flex;gap:10px;margin-top:20px}
+.h-cmp-btn{all:unset;box-sizing:border-box;cursor:pointer;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:#F2B705;transition:transform .18s cubic-bezier(.16,1,.3,1),opacity .2s,background .2s}
+.h-cmp-btn:hover{background:#000}
+.h-cmp-btn:active{transform:scale(.94)}
+.h-cmp-btn:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.h-cmp-btn[disabled]{opacity:.3;cursor:default;transform:none}
+#home-proof{scroll-behavior:smooth;-webkit-mask:linear-gradient(90deg,#000 calc(100% - 80px),transparent);mask:linear-gradient(90deg,#000 calc(100% - 80px),transparent)}
+#home-proof.at-end{-webkit-mask:none;mask:none}
+ol.plates>li{display:flex;align-self:stretch}
+ol.plates>li>button{height:auto;flex:1;align-self:stretch;align-items:center}
+.plates .pa{max-width:34ch}
+.h-end .lane.two{display:none}
+.h-end .lane{bottom:0}
+@media (prefers-reduced-motion:reduce){#home-proof{scroll-behavior:auto}.h-cmp-btn{transition:none}}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
@@ -644,8 +676,8 @@ footer.ft .ft-grid{display:grid;grid-template-columns:minmax(0,1.1fr) auto minma
       <div class="h-route-grid">
         <div class="h-sign-col">
           <div class="dist-sign h-sign">
-            <p class="ds-top"><span class="ds-arrow" aria-hidden="true">↑</span>6 steps to a fixed road</p>
-            <ol class="ds-rows ds-steps" id="hSignRows"><li data-stop="0"><button type="button" data-jump="0"><span class="sn">1</span><b>File on Sahaaya</b></button></li><li data-stop="1"><button type="button" data-jump="1"><span class="sn">2</span><b>Call your ward engineer</b></button></li><li data-stop="2"><button type="button" data-jump="2"><span class="sn">3</span><b>Tell whoever dug it</b></button></li><li data-stop="3"><button type="button" data-jump="3"><span class="sn">4</span><b>File an RTI</b></button></li><li data-stop="4"><button type="button" data-jump="4"><span class="sn">5</span><b>Go public</b></button></li><li data-stop="5"><button type="button" data-jump="5"><span class="sn">★</span><b>Road fixed</b></button></li></ol>
+            <p class="ds-top"><span class="ds-arrow" aria-hidden="true"><svg viewBox="0 0 24 32" width="22" height="30" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 30V3M3 12l9-9 9 9"/></svg></span>6 steps to a fixed road</p>
+            <ol class="ds-rows ds-steps" id="hSignRows"><li data-stop="0"><button type="button" data-jump="0"><span class="sn">1</span><b>File on Sahaaya</b></button></li><li data-stop="1"><button type="button" data-jump="1"><span class="sn">2</span><b>Call your ward engineer</b></button></li><li data-stop="2"><button type="button" data-jump="2"><span class="sn">3</span><b>Tell whoever dug it</b></button></li><li data-stop="3"><button type="button" data-jump="3"><span class="sn">4</span><b>File an RTI</b></button></li><li data-stop="4"><button type="button" data-jump="4"><span class="sn">5</span><b>Go public</b></button></li><li data-stop="5"><button type="button" data-jump="5"><span class="sn"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="currentColor"><path d="M12 2.8l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 16.8l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg></span><b>Road fixed</b></button></li></ol>
             <a class="btn primary ds-go" href="#/fix">Start my case</a>
           </div>
         </div>
@@ -669,6 +701,7 @@ footer.ft .ft-grid{display:grid;grid-template-columns:minmax(0,1.1fr) auto minma
       <h2 id="home-proof-h" class="h-sec">Present and past</h2>
       <p class="h-sub">Drag across each photo. HSR Layout and ITI Layout, September 2026, after residents ran this same route.</p>
       <div class="h-cmps" id="home-proof"></div>
+      <div class="h-cmp-nav"><button type="button" class="h-cmp-btn" data-dir="-1" aria-label="Previous fixed roads"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" class="h-cmp-btn" data-dir="1" aria-label="More fixed roads"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button></div>
     </div>
   </section>
 
@@ -764,7 +797,7 @@ footer.ft .ft-grid{display:grid;grid-template-columns:minmax(0,1.1fr) auto minma
         <div class="status" id="fstatus" role="status"></div>
       </form>
       <aside class="mine" aria-labelledby="mine-h">
-        <h3 id="mine-h">Your reports</h3>
+        <h2 id="mine-h" class="as-h3">Your reports</h2>
         <ul id="minelist"></ul>
         <div class="btnrow"><button class="btn" type="button" id="clearmine">Delete my reports</button></div>
         <div class="note-bar" id="storeNote">Sign in to claude.ai to share your reports with everyone. Until then they are saved on this device.</div>
@@ -824,7 +857,7 @@ footer.ft .ft-grid{display:grid;grid-template-columns:minmax(0,1.1fr) auto minma
         <div class="status" id="rstatus" role="status"></div>
       </form>
       <aside class="mine" aria-labelledby="rti-out-h">
-        <h3 id="rti-out-h">Your application</h3>
+        <h2 id="rti-out-h" class="as-h3">Your application</h2>
         <label for="rtiOut" class="sr" style="position:absolute;left:-9999px">RTI application text</label>
         <textarea id="rtiOut" style="width:100%;min-height:420px;border:1.5px solid var(--asphalt-soft);border-radius:6px;background:var(--bg);color:var(--ink);padding:12px;font-size:14px;line-height:1.5"></textarea>
         <small style="color:var(--muted)">You can edit the text before filing. Online filing has a 3,000-character limit on most portals; the text above shows its length below.</small>
@@ -928,7 +961,6 @@ footer.ft .ft-grid{display:grid;grid-template-columns:minmax(0,1.1fr) auto minma
         <h2 id="fx-play-h" class="sr">Your playbook</h2>
         <div id="fx-empty">
           <div class="fx-pre">
-            <p class="fx-pre-k">Your case, once you start</p>
             <h3>Every message written. Every number ready.</h3>
             <ol>
               <li><b>File on Sahaaya</b><span>Complaint drafted with your spot, photo and dates.</span></li>
@@ -1762,7 +1794,7 @@ function fxStepper(c){var nx=c?fxNext(c)[0]:"",dug=c?fxDug(c):true,done=0,total=
       else{var x=st(c,d[0]);total++;if(x.done){state="done";done++;sub="Done "+fmtDay(x.date||x.on).replace(/ \d{4}$/,"")}else if(nx===d[0]){state="now";sub="Do this now"}}
       if(nx==="wait"&&state==="todo"&&d[0]==="s5"){state="wait";sub="Wait a few days"}}
     else sub=d[3];
-    return '<li class="'+state+'"><button type="button" data-goto="'+d[0]+'"><span class="dot">'+(state==="done"?"✓":(d[0]==="fix"?"★":i+1))+'</span><span class="lbl">'+esc(d[1])+'</span><span class="sub">'+esc(sub)+'</span></button></li>'}).join("");
+    return '<li class="'+state+'"><button type="button" data-goto="'+d[0]+'"><span class="dot">'+(state==="done"?'<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>':(d[0]==="fix"?'<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="currentColor"><path d="M12 2.8l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 16.8l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>':i+1))+'</span><span class="lbl">'+esc(d[1])+'</span><span class="sub">'+esc(sub)+'</span></button></li>'}).join("");
   var pct=c?(c.fixedOn?100:Math.round(done/Math.max(1,total)*100)):0;
   return (c?'<div class="fx-bar"><div style="width:'+pct+'%"></div></div><p class="fx-barl">'+(c.fixedOn?"Road fixed. Case closed.":done+" of "+total+" steps done")+'</p>':"")+'<ol class="fx-stepper">'+items+'</ol>';
 }
@@ -1918,7 +1950,7 @@ function fxInit(){
 
 /* ---------- home rebuild: compare sliders, marquee, route journey ---------- */
 function cmpHTML(p,i){return '<div class="cmp" style="--x:50%"><img class="cmp-a" src="'+p.a+'" alt="After: '+esc(p.place)+'" draggable="false"><img class="cmp-b" src="'+p.b+'" alt="Before: '+esc(p.place)+'" draggable="false">'+
-  '<span class="cmp-t l">Before</span><span class="cmp-t r">After</span><span class="cmp-line"></span><span class="cmp-knob" aria-hidden="true">‹›</span>'+
+  '<span class="cmp-t l">Before</span><span class="cmp-t r">After</span><span class="cmp-line"></span><span class="cmp-knob" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></span>'+
   '<input type="range" min="0" max="100" value="50" aria-label="Compare before and after photos of '+esc(p.place)+'"></div>'}
 function cmpCard(p,i,full){return '<figure class="cmp-card">'+cmpHTML(p,i)+'<figcaption><span class="days">'+esc(p.days)+'</span><strong>'+esc(p.place)+'</strong>'+(full?'<small>'+esc(p.when)+'</small>':'')+'</figcaption></figure>'}
 function homeInit(){
@@ -1969,6 +2001,20 @@ document.getElementById("nearMe").addEventListener("click",function(){var b=this
     var near=ROADS.filter(function(r){return r.pts}).sort(function(a,c){return kmTo(a)-kmTo(c)})[0];if(near)selected=near.id;refresh()},
     function(){b.textContent="Show roads near me";toast("Could not get your location. Search for your area instead.")},{timeout:9000})});
 renderScopes();initLocation();renderForm();rtiForm();fxInit();homeInit();renderDemoBar();route();rtiCountRender(RTI_N);
+})();
+</script>
+<script>
+(function(){
+  function wire(){
+    var r=document.getElementById('home-proof'); if(!r||r.dataset.nav) return; r.dataset.nav=1;
+    var btns=document.querySelectorAll('.h-cmp-btn');
+    function step(){var c=r.querySelector('.cmp-card');return c?c.getBoundingClientRect().width+22:340}
+    function sync(){var end=r.scrollLeft+r.clientWidth>=r.scrollWidth-4;r.classList.toggle('at-end',end);
+      btns[0].disabled=r.scrollLeft<=4;btns[1].disabled=end;}
+    btns.forEach(function(b){b.addEventListener('click',function(){r.scrollBy({left:step()*(+b.dataset.dir)})})});
+    r.addEventListener('scroll',sync,{passive:true}); window.addEventListener('resize',sync); sync();
+  }
+  var tries=0;(function wait(){if(document.querySelector('#home-proof .cmp-card'))wire();else if(tries++<50)setTimeout(wait,100)})();
 })();
 </script>
 </body>
